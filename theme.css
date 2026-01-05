@@ -1,0 +1,490 @@
+/* @theme spring-boot-lecture */
+
+@import 'default';
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+
+:root {
+  --color-primary: #1e3a5f;
+  --color-primary-light: #2d5a8a;
+  --color-accent: #4a90d9;
+  --color-accent-light: #7ab3eb;
+  --color-background: #ffffff;
+  --color-background-alt: #f4f8fc;
+  --color-text: #1a1a2e;
+  --color-text-light: #4a4a6a;
+  --color-code-bg: #e8f0f8;
+  --color-border: #d0e0f0;
+}
+
+section {
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: 'Open Sans', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  padding: 40px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 175px;
+}
+
+section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+}
+
+h1 {
+  position: absolute;
+  top: 60px;
+  left: 60px;
+  right: 60px;
+  color: var(--color-primary);
+  font-size: 1.9em;
+  font-weight: 600;
+  border-bottom: none;
+  padding-bottom: 0;
+  margin: 0;
+}
+
+h1::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -10px;
+  height: 3px;
+  background: var(--color-accent);
+}
+
+
+h2 {
+  color: var(--color-primary-light);
+  font-size: 1.4em;
+  font-weight: 500;
+  margin-top: 0.5em;
+}
+
+h3 {
+  color: var(--color-accent);
+  font-size: 1.15em;
+  font-weight: 500;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+strong {
+  color: var(--color-primary);
+}
+
+code {
+  background: var(--color-code-bg);
+  color: var(--color-primary);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+pre {
+  background: var(--color-background-alt);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-accent);
+  border-radius: 6px;
+  padding: 1em;
+  font-size: 0.72em;
+  overflow-x: auto;
+}
+
+pre code {
+  background: transparent;
+  padding: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0;
+}
+
+th {
+  background: var(--color-primary);
+  color: white;
+  padding: 0.8em 1em;
+  text-align: left;
+  font-weight: 500;
+}
+
+td {
+  padding: 0.7em 1em;
+  border-bottom: 1px solid var(--color-border);
+}
+
+tr:nth-child(even) td {
+  background: var(--color-background-alt);
+}
+
+blockquote {
+  border-left: 4px solid var(--color-accent);
+  background: var(--color-background-alt);
+  padding: 0.8em 1.2em;
+  margin: 1em 0;
+  font-style: italic;
+  color: var(--color-text-light);
+}
+
+ul, ol {
+  margin-left: 0.5em;
+  margin-top: -0.5em;
+}
+
+li {
+  margin: 0.4em 0;
+  line-height: 1.5;
+}
+
+li::marker {
+  color: var(--color-accent);
+}
+
+header {
+  position: absolute;
+  top: 20px;
+  left: 60px;
+  right: 60px;
+  font-size: 0.75em;
+  color: var(--color-primary);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+footer {
+  position: absolute;
+  bottom: 20px;
+  left: 60px;
+  right: 60px;
+  font-size: 0.7em;
+  color: var(--color-text-light);
+  display: flex;
+  justify-content: space-between;
+}
+
+section.lead {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  color: white;
+}
+
+section.lead h1 {
+  position: static;
+  color: white;
+  border-bottom-color: var(--color-accent-light);
+  font-size: 2.8em;
+}
+
+section.lead > *:not(h1):first-of-type {
+  margin-top: 0;
+}
+
+section.lead h2 {
+  color: var(--color-accent-light);
+  font-size: 1.8em;
+}
+
+section.lead::before {
+  display: none;
+}
+
+section.lead header,
+section.lead footer {
+  display: none;
+}
+
+section.lead h1::after {
+  display: none;
+}
+
+/* ========== Chapter Slide ========== */
+
+section.chapter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 40px;
+  padding-left: 80px;
+  background: linear-gradient(135deg, #2d5a8a 0%, #4a7ab8 100%);
+  color: white;
+  position: relative;
+}
+
+section.chapter::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 100%;
+  background: var(--color-accent-light);
+}
+
+section.chapter::after {
+  display: none;
+}
+
+section.chapter h1 {
+  position: static;
+  color: white;
+  font-size: 2.4em;
+  font-weight: 700;
+  margin-bottom: 0.3em;
+  border-bottom: none;
+}
+
+section.chapter h1::after {
+  display: none;
+}
+
+section.chapter h2 {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.3em;
+  font-weight: 400;
+  margin-top: 0;
+}
+
+section.chapter img {
+  position: absolute;
+  right: 60px;
+  bottom: 60px;
+  max-width: 350px;
+  max-height: 300px;
+  object-fit: contain;
+  opacity: 0.9;
+}
+
+section.chapter header,
+section.chapter footer {
+  display: none;
+}
+
+section[data-paginate="true"]::after {
+  content: attr(data-marpit-pagination) ' / ' attr(data-marpit-pagination-total);
+  position: absolute;
+  bottom: 20px;
+  right: 60px;
+  font-size: 0.7em;
+  color: var(--color-text-light);
+}
+
+/* Footnote (adapted from msg.css) */
+section > div.footnote {
+  position: absolute;
+  bottom: 50px;
+  left: 60px;
+  max-width: calc(100% - 120px);
+  color: var(--color-text-light);
+  font-size: 0.65em;
+  display: flex;
+  justify-content: flex-start;
+  align-items: end;
+}
+
+section > div.footnote ol {
+  padding-left: 13px;
+  margin: 0;
+}
+
+section > div.footnote li::marker {
+  color: var(--color-text-light);
+}
+
+section > div.footnote a {
+  color: var(--color-accent);
+}
+
+/* ========== Column Layouts (adapted from msg.css) ========== */
+
+/* Basic multicolumn - auto-flow columns */
+section > div.multicolumn {
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 20px;
+}
+
+/* 2-column grid */
+.grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+  margin-top: 10px;
+}
+
+/* 3-column grid */
+.grid-3col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+  margin-top: 10px;
+}
+
+/* ========== Card Components ========== */
+
+/* Standard card with top border accent */
+.card {
+  background: var(--color-background-alt);
+  border: 1px solid var(--color-border);
+  border-top: 4px solid var(--color-accent);
+  border-radius: 6px;
+  padding: 15px;
+}
+
+.card h4 {
+  margin: 0 0 10px 0;
+  font-size: 1.1em;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.card ul {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 0.9em;
+}
+
+.card li {
+  margin: 4px 0;
+}
+
+/* Feature box with use-case description */
+.feature-box {
+  background: var(--color-background-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 15px;
+}
+
+.feature-box h4 {
+  margin: 0 0 10px 0;
+  font-size: 1.1em;
+  font-weight: 600;
+  color: var(--color-primary);
+  border-bottom: 2px solid var(--color-accent);
+  padding-bottom: 6px;
+}
+
+.feature-box ul {
+  margin: 0 0 10px 0;
+  padding-left: 18px;
+  font-size: 0.9em;
+}
+
+.feature-box .use-case {
+  font-size: 0.85em;
+  font-style: italic;
+  color: var(--color-text-light);
+  margin-top: 8px;
+}
+
+/* Hero card with number badge */
+.hero-card {
+  background: var(--color-background);
+  border: 2px solid var(--color-primary);
+  border-radius: 8px;
+  padding: 15px;
+  position: relative;
+}
+
+.hero-card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  height: 6px;
+  background: var(--color-accent);
+  border-radius: 8px 8px 0 0;
+}
+
+.badge-number {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  background: var(--color-primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1em;
+  font-weight: 700;
+}
+
+.hero-card h4 {
+  margin: 0 40px 10px 0;
+  font-size: 1.1em;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.hero-card ul {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 0.9em;
+}
+
+.hero-card li {
+  margin: 4px 0;
+}
+
+/* ========== Figure with Caption (right positioned) ========== */
+
+figure.right-figure {
+  position: absolute;
+  right: 80px;
+  top: 200px;
+  text-align: center;
+  margin: 0;
+}
+
+figure.right-figure img {
+  max-width: 250px;
+}
+
+figure.right-figure figcaption {
+  margin-top: 10px;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+figure.right-figure figcaption a {
+  color: var(--color-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+figure.right-figure figcaption a:hover {
+  color: var(--color-accent);
+}
+
+figure.right-figure figcaption img.icon {
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+}
