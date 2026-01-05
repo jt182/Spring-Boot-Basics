@@ -18,7 +18,6 @@
 ```
 Spring Boot Vorlesung/
 ├── code-examples/                  # Code-Beispiele für Live-Coding
-│   ├── chapter-1-setup/
 │   ├── chapter-2-di-beans/
 │   ├── chapter-3-configuration/
 │   ├── chapter-4-data-access/
@@ -35,7 +34,6 @@ Die `code-examples/` Verzeichnisse enthalten vorbereiteten Code für die Live-Co
 
 | Verzeichnis | Kapitel | Inhalt |
 |-------------|---------|--------|
-| `chapter-1-setup` | Motivation & Setup | Spring Initializr Projekt |
 | `chapter-2-di-beans` | DI & Beans | RouteService mit @Service |
 | `chapter-3-configuration` | Configuration | application.yml, @Value |
 | `chapter-4-data-access` | Data Access & JPA | Route Entity, Repository |

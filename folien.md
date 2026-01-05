@@ -1621,6 +1621,29 @@ Diese Codes bestimmen, wie Clients die Response interpretieren.
 
 ---
 
+# Setup: Dependencies
+
+<!--
+Analog zu spring-boot-starter-data-jpa für JPA.
+spring-boot-starter-webmvc enthält alles für REST-APIs: Spring MVC, Jackson, Tomcat.
+Auto-Configuration: Starter im Classpath → Tomcat wird gestartet, Jackson konfiguriert.
+-->
+
+**build.gradle:**
+
+```groovy
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+}
+```
+
+**Auto-Configuration:**
+- Spring MVC im Classpath → DispatcherServlet wird konfiguriert
+- Jackson im Classpath → JSON-Serialisierung aktiviert
+- Embedded Tomcat startet auf Port 8080
+
+---
+
 # @RestController
 
 <!--
@@ -1833,7 +1856,7 @@ Bean Validation (Jakarta Validation) ist der Standard in Java.
 }
 ```
 
-Ohne Validierung landet das in der Datenbank! 😱
+Ohne Validierung landet das in der Datenbank!
 
 ---
 
@@ -1845,10 +1868,6 @@ Ohne Validierung landet das in der Datenbank! 😱
 public record RouteRequest(
         @NotBlank(message = "Origin darf nicht leer sein")
         String origin,
-
-        @NotBlank
-        String destination,
-
         @Min(value = 1, message = "Distanz muss mindestens 1 km sein")
         Integer distanceKm
 ) {}
@@ -2067,60 +2086,28 @@ REST-Controller mit DTOs implementieren und mit `@WebMvcTest` testen
 
 <!-- header: "Wrap-Up" -->
 
-# Was haben wir gebaut?
+# Was haben wir gebaut & gelernt?
 
 <!--
 Architektur-Überblick: Controller → Service → Repository → Database.
 Spring Boot verbindet alles: Auto-Configuration, Dependency Injection, Testing-Support.
--->
-
-```
-┌─────────────────────────────────────────────────────────┐
-│                    Flight Service                       │
-├─────────────────────────────────────────────────────────┤
-│  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐  │
-│  │  Controller │ →  │   Service   │ →  │ Repository  │  │
-│  │    (REST)   │    │  (Logik)    │    │   (JPA)     │  │
-│  └─────────────┘    └─────────────┘    └─────────────┘  │
-│         ↑                                     ↓         │
-│      HTTP/JSON                            H2 Database   │
-├─────────────────────────────────────────────────────────┤
-│  Spring Boot: Auto-Configuration, DI, Testing           │
-└─────────────────────────────────────────────────────────┘
-```
-
----
-
-# Was haben wir gelernt?
-
-<!--
 Testpyramide nochmal erwähnen: Unit Tests, Sliced Tests, Integration Tests.
-Testet so spezifisch wie möglich!
 -->
 
-<div class="grid-2col">
+```
+┌───────────────────────────────────────────────────────────────────────────┐
+│                           Flight Service                                   │
+├───────────────────────────────────────────────────────────────────────────┤
+│  ┌─────────────┐      ┌─────────────┐      ┌─────────────┐                │
+│  │  Controller │  →   │   Service   │  →   │ Repository  │  →  Database   │
+│  │  (REST API) │      │    (DI)     │      │   (JPA)     │                │
+│  └─────────────┘      └─────────────┘      └─────────────┘                │
+├───────────────────────────────────────────────────────────────────────────┤
+│  @WebMvcTest            @SpringBootTest          @DataJpaTest             │
+└───────────────────────────────────────────────────────────────────────────┘
+```
 
-<div class="card">
-
-#### Grundlagen
-
-- Spring Boot Setup mit Gradle
-- Dependency Injection & IoC Container
-- Externalisierte Konfiguration
-
-</div>
-
-<div class="card">
-
-#### Daten & APIs
-
-- JPA Entities & Repositories
-- REST APIs mit @RestController
-- Sliced Testing (@DataJpaTest, @WebMvcTest)
-
-</div>
-
-</div>
+**Kernkonzepte:** Dependency Injection, Auto-Configuration, Externalisierte Config, Sliced Testing
 
 ---
 
