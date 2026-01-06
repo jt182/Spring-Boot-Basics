@@ -1170,6 +1170,40 @@ logging:
 
 <!-- header: "Data Access & JPA" -->
 
+# Kurzer Exkurs: Relationale Datenbanken I
+
+<!--
+Schneller Refresher für alle, die länger nicht mit SQL gearbeitet haben.
+Nur 2 Minuten – wer das kennt, kurze Pause.
+-->
+
+**Die Grundidee:** Daten in Tabellen mit Beziehungen
+
+```
+┌─────────────────────────────────────────┐
+│              ROUTE (Tabelle)            │
+├──────┬───────────┬─────────────┬────────┤
+│  ID  │  ORIGIN   │ DESTINATION │ DIST_KM│  ← Spalten
+├──────┼───────────┼─────────────┼────────┤
+│  1   │ Frankfurt │ Berlin      │  545   │  ← Zeile (Row)
+│  2   │ München   │ Hamburg     │  790   │
+│  3   │ Frankfurt │ München     │  390   │
+└──────┴───────────┴─────────────┴────────┘
+  Primary Key = ID (eindeutig pro Zeile)
+```
+
+---
+
+# Kurzer Exkurs: Relationale Datenbanken II
+
+**SQL-Grundoperationen:**
+- `SELECT * FROM route` → Alle Zeilen lesen
+- `INSERT INTO route (origin, destination) VALUES ('Berlin', 'Köln')` → Zeile einfügen
+- `UPDATE route SET dist_km = 550 WHERE id = 1` → Zeile ändern
+- `DELETE FROM route WHERE id = 3` → Zeile löschen
+
+---
+
 # Das Problem: JDBC Boilerplate
 
 <!--
@@ -1553,6 +1587,36 @@ class RouteRepositoryTest {
 ---
 
 <!-- header: "REST APIs" -->
+
+# Kurzer Exkurs: HTTP-Grundlagen
+
+<!--
+Schneller Refresher – HTTP ist das Protokoll des Webs.
+Jeder Browser-Request ist ein HTTP-Request. APIs nutzen dasselbe Protokoll.
+-->
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│                      HTTP Request                            │
+├──────────────────────────────────────────────────────────────┤
+│  POST /routes HTTP/1.1              ←  Methode + Pfad        │
+│  Host: api.airline.com              ←  Header                │
+│  Content-Type: application/json                              │
+│  { "origin": "Frankfurt" }          ←  Body (optional)       │
+└──────────────────────────────────────────────────────────────┘
+                            ↓
+┌──────────────────────────────────────────────────────────────┐
+│                      HTTP Response                           │
+├──────────────────────────────────────────────────────────────┤
+│  HTTP/1.1 201 Created                ← Status Code           │
+│  Location: /routes/42                ← Header                │
+│  Content-Type: application/json                              │
+│                                                              │
+│  { "id": 42, "origin": "Frankfurt" } ← Body                  │
+└──────────────────────────────────────────────────────────────┘
+```
+
+---
 
 # REST: **RE**presentational **S**tate **T**ransfer
 
@@ -2156,6 +2220,37 @@ Testpyramide nochmal erwähnen: Unit Tests, Sliced Tests, Integration Tests.
 </div>
 
 </div>
+
+---
+
+# Häufige Fehler & Lösungen I
+
+<!--
+Diese Fehler sehen wir immer wieder bei Einsteigern.
+Gut zu wissen, damit ihr nicht lange suchen müsst!
+-->
+
+| Fehler | Ursache | Lösung |
+|--------|---------|--------|
+| `NoSuchBeanDefinitionException` | Bean nicht gefunden | `@Component`/`@Service` vergessen? Package außerhalb des Scans? |
+| `ApplicationContext` startet nicht | Fehler in Config | Stack-Trace lesen! Oft Property fehlt oder Typo |
+| keine Validierung | `@Valid` fehlt | `@Valid` hinzufügen |
+
+---
+
+# Häufige Fehler & Lösungen II
+
+<!--
+Diese Fehler sehen wir immer wieder bei Einsteigern.
+Gut zu wissen, damit ihr nicht lange suchen müsst!
+-->
+
+| Fehler | Ursache | Lösung |
+|--------|---------|--------|
+| 404 bei API-Aufruf | Mapping falsch | Pfad prüfen, `@RestController` vorhanden? |
+| JSON-Parsing-Fehler | Getter/Setter fehlen | Bei Records automatisch, bei Klassen prüfen |
+
+**Tipp:** Stack-Traces immer von unten nach oben lesen – die eigentliche Ursache steht meist am Ende!
 
 ---
 
